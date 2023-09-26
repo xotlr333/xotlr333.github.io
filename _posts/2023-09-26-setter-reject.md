@@ -2,7 +2,7 @@
 layout: post
 title: Setter 지양
 date: 2023-09-26
-categories: [객체지향]
+categories: [JAVA, 객체지향]
 tags: [컨벤션]
 ---
 
