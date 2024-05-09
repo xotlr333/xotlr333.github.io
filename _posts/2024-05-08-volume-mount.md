@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 볼륨과 마운트
-date: 2024-05-07
+date: 2024-05-08
 categories: [Docker]
 tags: [볼륨, 마운트]
 ---
