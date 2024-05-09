@@ -18,7 +18,7 @@ tags: [컨테이너, 이미지]
 docker commit 컨테이너_이름 새로운_이미지_이름
 ```
 
-![Untitled](3%20%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5%20%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5%20f67b423d88fc4d9595a26a82ed29f756/Untitled.png)
+<img width="708" alt="Untitled" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/38de66dc-9381-4604-ab47-463f4f66477b">
 
 ## Dockerfile 스크립트로 이미지 만들기
 
@@ -26,18 +26,18 @@ docker commit 컨테이너_이름 새로운_이미지_이름
 - Dockerfile 스크립트에는 토대가 될 이미지나 실행할 명령어 등을 기재한다.
 - 편집은 메모장 같은 텍스트 에디터를 사용한다.
 
-![Untitled](3%20%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5%20%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5%20f67b423d88fc4d9595a26a82ed29f756/Untitled%201.png)
+<img width="751" alt="Untitled 1" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/f79d3147-2771-432c-af09-7c29baffd72d">
 
 ```docker
 // 자주 사용되는 커맨드 예
 docker build -t 생성할_이미지_이름 재료_폴더_경로
 ```
 
-![Untitled](3%20%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5%20%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5%20f67b423d88fc4d9595a26a82ed29f756/Untitled%202.png)
+<img width="844" alt="Untitled 2" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/95d72560-4678-41ac-a91c-5db5e06b9139">
 
 - Dockerfile은 첫머리에 오는 FROM 뒤에 이미지 이름을 기재하고, 그 뒤로는 파일 복사 또는 명령어 실행 등 컨테이너를 대상으로 할 일을 기술한다.
 
-![Untitled](3%20%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5%20%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5%20f67b423d88fc4d9595a26a82ed29f756/Untitled%203.png)
+<img width="744" alt="Untitled 3" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/9441d485-8c59-4cc8-bdf1-955e15897a2d">
 
 ## [실습] commit 커맨드로 컨테이너를 이미지로 변환
 
