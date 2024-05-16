@@ -3,7 +3,7 @@ layout: post
 title: 도커 컴포즈 실행
 date: 2024-05-17
 categories: [Docker]
-tags: [도커컴포즈파일]
+tags: [도커컴포즈]
 ---
 ## 도커 컴포즈 커맨드
 
