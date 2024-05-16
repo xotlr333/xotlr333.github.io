@@ -96,3 +96,8 @@ docker-compose -f 컴포즈_파일_경로 stop 옵션
             restart: always
         ...
         ```
+
+
+---
+참고)  
+도서-그림과 실습으로 배우는 도커&쿠버네티스
