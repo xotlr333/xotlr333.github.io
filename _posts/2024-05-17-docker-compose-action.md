@@ -76,18 +76,19 @@ docker-compose -f 컴포즈_파일_경로 stop 옵션
 
 
 ### 실습 중 오류
-    - 오류 메시지
 
-    <img width="860" alt="Untitled 5" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/10bf57df-9767-4fde-946e-8ed10ee351b3">
+- 오류 메시지
 
-    - 해결 방안
-        - 플랫폼을 지정한다.
+<img width="860" alt="Untitled 5" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/10bf57df-9767-4fde-946e-8ed10ee351b3">
+
+- 해결 방안
+    - 플랫폼을 지정한다.
 
         ```yaml
         version: "3"
         services:
           mysql000ex11:
-        		platform: linux/x86_64 // 플랫폼 지정
+        	platform: linux/x86_64 // 플랫폼 지정
             image: mysql:5.7
             networks:
               - wordpress000net1
