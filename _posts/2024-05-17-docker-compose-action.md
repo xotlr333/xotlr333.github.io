@@ -88,7 +88,7 @@ docker-compose -f 컴포즈_파일_경로 stop 옵션
         version: "3"
         services:
           mysql000ex11:
-        	platform: linux/x86_64 // 플랫폼 지정
+            platform: linux/x86_64 // 플랫폼 지정
             image: mysql:5.7
             networks:
               - wordpress000net1
