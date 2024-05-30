@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 3. 쿠버네티스 설치하기
-date: 2024-05-27
+date: 2024-05-31
 categories: [Kubernetes, 3.쿠버네티스 설치하기]
 tags: [쿠버네티스]
 ---
