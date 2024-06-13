@@ -6,8 +6,6 @@ categories: [Kubernetes, 6. 보안을 고려해 파드를 외부에 노출시키
 tags: [외부 노출]
 ---
 
-# 1. 파드를 외부에 노출시키기
-
 - 서비스는 파드가 어떤 IP를 갖건 내부의 다른 파드나 외부의 사용자(혹은 애플리케이션)가 접근할 수 있게 해줍니다.
 - 서비스는 클러스터 내부에서 접속하는 것과 외부에서 접속하는 방법에 따라 나뉩니다.
 
@@ -17,14 +15,14 @@ tags: [외부 노출]
 
 ![Untitled 1](https://github.com/xotlr333/xotlr333.github.io/assets/81614820/bf7106ae-df14-4ce6-9e74-b2d871436aaa)
 
-# ClusterIP
+## ClusterIP
 
 - **ClusterIP**는 기본 서비스 타입으로, **클러스터 내 파드에 접근할 수 있는 가상의 IP**입니다.
 - ClusterIP는 클러스터 내부에서만 사용할 수 있으며 외부에서는 파드에 접속할 수 없습니다.
 
-## [실습] ClusterIP 타입의 서비스 사용하기
+### [실습] ClusterIP 타입의 서비스 사용하기
 
-### 1. ClusterIP yaml 파일 생성하기
+#### 1. ClusterIP yaml 파일 생성하기
 
 ```bash
 vi ClusterIP.yaml
@@ -55,13 +53,13 @@ spec:
 - 매니페스트에서는 서비스 타입을 별도로 지정하지 않았습니다.
 - 이처럼 서비스 유형을 지정하지 않으면 기본으로 ClusterIP를 사용하겠다는 것을 의미합니다.
 
-### 2. 파드 생성하기
+#### 2. 파드 생성하기
 
 ```bash
 kubectl apply -f ClusterIP.yaml
 ```
 
-### 3. 파드 상태 확인하기
+#### 3. 파드 상태 확인하기
 
 ```bash
 kubectl get pods -l run=clusterip-nginx -o wide
@@ -72,7 +70,7 @@ kubectl get pods -l run=clusterip-nginx -o wide
 
 <img width="1187" alt="Untitled" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/0d58b550-679d-4911-9d27-02f53d197a69">
 
-### 4. 서비스 생성하기
+#### 4. 서비스 생성하기
 
 - 서비스 생서하는 방법은 두 가지입니다.
     - 매니페스트를 이용해 생성하는 방법(yaml 파일 이용)
@@ -84,7 +82,7 @@ kubectl get pods -l run=clusterip-nginx -o wide
 kubectl expose deployment/clusterip-nginx
 ```
 
-### 5. 서비스 상태 확인하기
+#### 5. 서비스 상태 확인하기
 
 ```bash
 kubectl get svc clusterip-nginx
@@ -101,7 +99,7 @@ kubectl describe svc clusterip-nginx
 
 - 생성된 clusterip-nginx 서비스의 CLUSTERIP가 10.98.8.9임을 확인했습니다.
 
-### 6. 파드의 엔드포인트 확인하기
+#### 6. 파드의 엔드포인트 확인하기
 
 - **엔드포인트란**?
     - 쿠버네티스에서 서비스와 파드의 통신은 다음과 같이 서비스의 셀렉터와 파드의 레이블을 이용합니다.
@@ -117,7 +115,7 @@ kubectl get ep clusterip-nginx
 
 <img width="652" alt="Untitled 3" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/2b160f2b-4eea-473e-a2dd-47eb9ed7bb7d">
 
-### 7. busybox 이미지를 이용한 파드 생성 후 ClusterIP 이용해 콘텐츠 가져오기
+#### 7. busybox 이미지를 이용한 파드 생성 후 ClusterIP 이용해 콘텐츠 가져오기
 
 ```bash
 # busybox 파드 생성 후 접속
@@ -135,7 +133,7 @@ exit
 
 <img width="944" alt="Untitled 4" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/e5719b94-b00f-4b20-838a-6c4881e2078b">
 
-# ExternalName
+## ExternalName
 
 - ExternalName은 클러스터 내부에서 외부의 엔드포인트에 접속하기 위한 서비스입니다.
 - 이때 엔드포인트는 클러스터 외부에 위치하는 데이터베이스나 애플리케이션의 API 등을 의미합니다.
@@ -149,7 +147,7 @@ exit
 
 ![Untitled 3](https://github.com/xotlr333/xotlr333.github.io/assets/81614820/99a97841-30b8-4e0b-bcd2-84d24643959a)
 
-# 노드포트
+## 노드포트
 
 - 노드포트 타입의 서비스는 **외부 사용자(혹은 애플리케이션)가 클러스터 내부에 있는 파드에 접속할 때 사용**하는 서비스 중 하나입니다.
 - 예를 들어, 특정 포트(노드포트)로 3001을 개발하면 노드포트 서비스가 이 포트로 들어오는 모든 요청은 해당 업무를 처리할 수 있는 파드로 전달합니다.
@@ -160,9 +158,9 @@ exit
 
 ![Untitled 5](https://github.com/xotlr333/xotlr333.github.io/assets/81614820/fb7a917e-d1a8-4a6d-8d09-077e1e920b8e)
 
-## [실습] nginx를 이용해 노드포트 사용하기
+### [실습] nginx를 이용해 노드포트 사용하기
 
-### 1. nginx-deployment yaml 파일 생성하기
+#### 1. nginx-deployment yaml 파일 생성하기
 
 ```bash
 vi nginx-deployment.yaml
@@ -192,13 +190,13 @@ spec:
             - containerPort: 80
 ```
 
-### 2. 디플로이먼트 생성하기
+#### 2. 디플로이먼트 생성하기
 
 ```bash
 kubectl apply -f nginx-deployment.yaml
 ```
 
-### 3. 디플로이먼트 및 파드 상태 확인하기
+#### 3. 디플로이먼트 및 파드 상태 확인하기
 
 ```bash
 # 디플로이먼트 상태 확인
@@ -214,7 +212,7 @@ kubectl get pod
 
 <img width="671" alt="Untitled 6" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/e2a1619d-c999-4574-843f-88c0c8cac33a">
 
-### 4. 파드의 외부 노출을 위한 서비스 생성하기
+#### 4. 파드의 외부 노출을 위한 서비스 생성하기
 
 ```bash
 # 서비스 yaml 생성
@@ -248,7 +246,7 @@ kubectl apply -f nginx-svc.yaml
 
 ![Untitled 6](https://github.com/xotlr333/xotlr333.github.io/assets/81614820/1f2e90eb-09e3-46ba-8bf3-0d39d4a348e8)
 
-### 5. 외부에서 접속하기
+#### 5. 외부에서 접속하기
 
 - 먼저 접속하기 위해 서비스 포트를 확인합니다.
 
@@ -270,7 +268,7 @@ minikube service clusterip-nginx --url
 
 <img width="583" alt="Untitled 9" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/4221f268-55a1-4a88-88bc-6706323cf75e">
 
-# 로드밸런서
+## 로드밸런서
 
 - **로드밸런서(LoadBalancer)**는 **서버에 가해지는 부하를 분산해주는 장치 또는 기술**을 통칭합니다.
 
@@ -278,12 +276,12 @@ minikube service clusterip-nginx --url
     - **L4 로드밸런서** : OSI 7계층에서 **네트워크 계층이나 트랜스포트 계층의 정보를 바탕**으로 로드를 분산합니다. 따라서 **IP 주소나 포트 번호 등을 이용해 트래픽을 분산**합니다.
     - **L7 로드밸런서** : OSI 7계층에서 **애플리케이션 계층을 기반으로 로드를 분산하기 때문에 URL, HTTP 헤더, 쿠키 등과 같은 사용자의 요청을 기준으로 트래픽을 분산**합니다.
 
-## [실습] L4 로드밸런서 사용하기
+### [실습] L4 로드밸런서 사용하기
 
 - L4 로드밸런서는 외부에서 접근할 수 있는 IP를 이용해 로드밸런서를 구성합니다.
 - 즉, 외부 IP(공인 IP)를 로드밸런서로 설정하면 클러스터 외부에서 접근할 수 있습니다.
 
-### 1. httpd 이미지를 이용해 디플로이먼트 생성하기
+#### 1. httpd 이미지를 이용해 디플로이먼트 생성하기
 
 - 지금까지 yaml 파일을 이용해 디플로이먼트를 생성했지만 다음과 같이 이미지를 이용해서 간단하게 디플로이먼트를 생성할 수도 있습니다.
 
@@ -291,7 +289,7 @@ minikube service clusterip-nginx --url
 kubectl create deployment httpd --image=httpd
 ```
 
-### 2. httpd 외부 노출을 위한 서비스 생성하기
+#### 2. httpd 외부 노출을 위한 서비스 생성하기
 
 - externalIPs에 외부 IP를 입력합니다.
 
@@ -322,7 +320,7 @@ EOF # 편집을 끝내는 명령어입니다
 kubectl create -f httpd-service.yaml
 ```
 
-### 3. 서비스 상태 확인하기
+#### 3. 서비스 상태 확인하기
 
 ```yaml
 kubectl get svc
@@ -348,7 +346,7 @@ curl -i 127.0.0.1:63615
 
 <img width="449" alt="Untitled 12" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/47761693-a893-4a8f-a636-e9e66cec9b2f">
 
-### 4. 로드밸런서 yaml 파일 생성하기
+#### 4. 로드밸런서 yaml 파일 생성하기
 
 - 보통 기업에서는 서비스별로 폴더를 만들어서 관리합니다.
 - 그래서 이번에는 service 폴더를 생성 후 진행하겠습니다.
@@ -386,7 +384,7 @@ spec:
             - containerPort: 8080 # 컨테이너(파드)에서 8080 포트를 사용하도록 지정
 ```
 
-### 5. 로드밸런서 디플로이먼트 생성 및 상태 확인하기
+#### 5. 로드밸런서 디플로이먼트 생성 및 상태 확인하기
 
 ```bash
 # 디플로이먼트 생성
@@ -398,14 +396,14 @@ kubectl get deployments hello-world
 
 <img width="656" alt="Untitled 13" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/731c1af4-a538-42f8-a4cb-2f7f343f99c5">
 
-### 6. hello-world 디플로이먼트를 외부에 노출시키기 위한 서비스 생성하기
+#### 6. hello-world 디플로이먼트를 외부에 노출시키기 위한 서비스 생성하기
 
 ```bash
 # 서비스 생성
 kubectl expose deployment hello-world --type=LoadBalancer --name=exservice
 ```
 
-### 7. 서비스 정보 확인하기
+#### 7. 서비스 정보 확인하기
 
 ```bash
 # 서비스 상태 확인
@@ -424,7 +422,7 @@ kubectl describe service exservice
 
 <img width="748" alt="Untitled 15" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/31d3b6f5-97b6-401a-bf53-825b9cd2fef7">
 
-### 8. 로드밸런서로 외부 접속 확인하기
+#### 8. 로드밸런서로 외부 접속 확인하기
 
 - minkube랑 호스트랑 바인딩을 합니다.
 
@@ -442,13 +440,13 @@ curl http://127.0.0.1:63785
 
 <img width="601" alt="Untitled 17" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/dc09b485-46b5-45dd-8ffb-88b7d724e814">
 
-## [실습] L7 로드밸런서 사용하기(인그레이스)
+### [실습] L7 로드밸런서 사용하기(인그레이스)
 
 - **인그레스(Ingresss)**는 **클러스터 외부에서 내부로 접근하는 요청(HTTP, HTTPS 요청)을 어떻게 처리할지 정의해 둔 규칙들의 모임**입니다.
 - 즉, 인그레스는 어떤 URL 경로로 요청이 왔을 때 어떤 서비스로 연결하라는 ‘규칙’을 정의한 것이 전부입니다.
 - 실제로 **인그레스 규칙에 맞게 경로를 찾는 행위를 하는 것**은 **인그레스 컨트롤러**입니다.
 
-### 1. nginx 인그레스 컨트롤러 설치하기
+#### 1. nginx 인그레스 컨트롤러 설치하기
 
 ```bash
 # nginx 인그레스 컨트롤러를 위한 파일 생성
@@ -1155,7 +1153,7 @@ kubectl apply -f ingress-nginx-controller.yaml
 kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 ```
 
-### 2. 파드 및 서비스 생성하기
+#### 2. 파드 및 서비스 생성하기
 
 - 인그레스를 테스트하기 위한 서비스와 파드를 생성합니다.
 
@@ -1246,7 +1244,7 @@ kubectl get deploy,svc,pods
 
 <img width="798" alt="Untitled 20" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/e138e3c2-89ef-4a20-ab55-1a9cec2121c1">
 
-### 3. 인그레스 생성하기
+#### 3. 인그레스 생성하기
 
 - 이제 요청 경로에 따라 서비스를 연결하기 위한 파일을 생성합니다.
 
@@ -1312,7 +1310,7 @@ kubectl get svc -n ingress-nginx
 
 - 30803 포트 번호를 사용하는 것을 확인할 수 있습니다.
 
-### 4. 외부 요청으로 인그레스 확인하기
+#### 4. 외부 요청으로 인그레스 확인하기
 
 - 엔드포인트 /coffee에 대한 요청은 coffee-svc 서비스에 전달되어 coffee 파드가 응답할 것이며, 엔드포인트 /tea에 대한 요청은 tea-svc 서비스에 전달되어 tea 파드가 응답할 것입니다.
 
@@ -1323,3 +1321,11 @@ kubectl get svc -n ingress-nginx
 - /tea 로 접속했을 때 응답한 파드가 다른 것을 확인할 수 있습니다.
 
 <img width="609" alt="Untitled 25" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/ca2f67a1-cc8f-41c6-917e-a3314baa25d6">
+
+
+
+
+
+---
+참고)  
+도서-쉽게 시작하는 쿠버네티스
