@@ -216,3 +216,11 @@ kubectl get deployment php-apache
 ```
 
 <img width="801" alt="Untitled 6" src="https://github.com/xotlr333/xotlr333.github.io/assets/81614820/26f13568-5299-455e-8419-0ca8ca540c8f">
+
+
+
+
+
+---
+참고)  
+도서-쉽게 시작하는 쿠버네티스
